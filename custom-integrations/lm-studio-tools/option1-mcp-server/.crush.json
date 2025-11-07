@@ -1,0 +1,40 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "anthropic": {
+      "models": [
+        {
+          "id": "claude-sonnet-4-20250514",
+          "name": "Claude Sonnet 4"
+        }
+      ]
+    }
+  },
+  "mcp": {
+    "lm-studio-tools": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["lm-studio-mcp-server.js"],
+      "timeout": 120,
+      "disabled": false,
+      "env": {
+        "LM_STUDIO_BASE_URL": "http://localhost:1234/v1",
+        "LM_STUDIO_TIMEOUT": "60000",
+        "LM_STUDIO_ENABLE_CACHE": "true",
+        "LM_STUDIO_CACHE_TTL": "3600"
+      }
+    }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "view",
+      "ls",
+      "grep",
+      "mcp_lm-studio-tools_analyze",
+      "mcp_lm-studio-tools_generate",
+      "mcp_lm-studio-tools_refactor",
+      "mcp_lm-studio-tools_plan",
+      "mcp_lm-studio-tools_custom"
+    ]
+  }
+}

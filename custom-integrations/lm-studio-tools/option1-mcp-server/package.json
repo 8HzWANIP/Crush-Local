@@ -1,0 +1,26 @@
+{
+  "name": "lm-studio-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for LM Studio integration with Crush CLI",
+  "main": "lm-studio-mcp-server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node lm-studio-mcp-server.js",
+    "test": "node test-server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "lm-studio",
+    "crush-cli",
+    "local-llm"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
