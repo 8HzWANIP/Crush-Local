@@ -1,0 +1,76 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lmstudio": {
+      "name": "LM Studio",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "Qwen3 Coder 30B",
+          "id": "qwen/qwen3-coder-30b",
+          "context_window": 32768,
+          "default_max_tokens": 4096
+        }
+      ]
+    }
+  },
+  "default_provider": "lmstudio",
+  "mcp_servers": {
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/user/workspace"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "description": "Local filesystem access for reading project files"
+    },
+    "git": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "description": "Git operations and history analysis"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.github.com/mcp",
+      "headers": {
+        "Authorization": "$(echo Bearer $GITHUB_TOKEN)",
+        "Accept": "application/vnd.github.v3+json"
+      },
+      "description": "GitHub API access for issues, PRs, and repositories"
+    },
+    "database": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ],
+      "env": {
+        "DATABASE_URL": "$(echo $DATABASE_URL)"
+      },
+      "description": "Database schema analysis and query optimization"
+    },
+    "custom-analyzer": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "/home/user/scripts/custom-code-analyzer.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/home/user/lib/python",
+        "CONFIG_FILE": "/home/user/config/analyzer.json"
+      },
+      "description": "Custom code analysis tool"
+    }
+  }
+}

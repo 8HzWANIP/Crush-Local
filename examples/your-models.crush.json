@@ -1,0 +1,70 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lmstudio-primary": {
+      "name": "LM Studio - Your Primary Models",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "timeout": 300000,
+      "models": [
+        {
+          "name": "Qwen2.5 Coder 32B Instruct Q6",
+          "id": "bartowski/Qwen2.5-Coder-32B-Instruct-GGUF/Qwen2.5-Coder-32B-Instruct-Q6_K.gguf",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "temperature": 0.7,
+          "description": "Best quality - Primary model for complex code analysis (25GB)"
+        },
+        {
+          "name": "Qwen3 Coder 30B A3B Instruct",
+          "id": "lmstudio-community/Qwen3-Coder-30B-A3B-Instruct-GGUF/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "temperature": 0.7,
+          "description": "Faster inference - Good for real-time coding (17GB)"
+        },
+        {
+          "name": "Qwen2.5 Coder 32B Q4",
+          "id": "lmstudio-community/Qwen2.5-Coder-32B-GGUF/Qwen2.5-Coder-32B-Q4_K_M.gguf",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "temperature": 0.7,
+          "description": "Balanced - Lighter version for quick tasks (18GB)"
+        }
+      ]
+    },
+    "lmstudio-large": {
+      "name": "LM Studio - Large Model (DeepSeek)",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "timeout": 600000,
+      "models": [
+        {
+          "name": "DeepSeek Coder v2 236B",
+          "id": "bartowski/DeepSeek-Coder-V2-Instruct-GGUF/DeepSeek-Coder-V2-Instruct-Q2_K.gguf",
+          "context_window": 64000,
+          "default_max_tokens": 8000,
+          "temperature": 0.8,
+          "description": "Massive model - Use for complex reasoning and architecture (80GB, requires significant VRAM)"
+        }
+      ]
+    }
+  },
+  "default_provider": "lmstudio-primary",
+  "performance": {
+    "cache_responses": true,
+    "cache_ttl": 3600
+  },
+  "notes": [
+    "For RTX 5090 (32GB VRAM):",
+    "- Qwen2.5-32B-Q6 (25GB): Will fit with some room for context",
+    "- Qwen3-30B-Q4 (17GB): Plenty of room, fastest inference",
+    "- Qwen2.5-32B-Q4 (18GB): Good balance",
+    "- DeepSeek-v2-236B-Q2 (80GB): Too large for single GPU, requires offloading to RAM (slower)",
+    "",
+    "Recommended workflow:",
+    "1. Daily coding: Qwen3-30B-Q4 (fast)",
+    "2. Complex analysis: Qwen2.5-32B-Q6 (quality)",
+    "3. Architecture/planning: Consider DeepSeek if you can accept slower inference with CPU offloading"
+  ]
+}

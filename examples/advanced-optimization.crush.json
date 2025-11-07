@@ -1,0 +1,68 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lmstudio-optimized": {
+      "name": "LM Studio Optimized for RTX 5090",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "timeout": 300000,
+      "retry": {
+        "max_attempts": 3,
+        "backoff_factor": 2
+      },
+      "models": [
+        {
+          "name": "Qwen3 Coder 70B Q4",
+          "id": "qwen/qwen3-coder-70b-q4_k_m",
+          "context_window": 16384,
+          "default_max_tokens": 4096,
+          "temperature": 0.7,
+          "top_p": 0.9,
+          "top_k": 40,
+          "frequency_penalty": 0.0,
+          "presence_penalty": 0.0,
+          "stop": ["<|endoftext|>", "<|im_end|>"],
+          "description": "Large model with Q4 quantization for maximum VRAM efficiency"
+        },
+        {
+          "name": "Qwen2.5 Coder 30B Q6",
+          "id": "qwen/qwen2.5-coder-30b-q6_k",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "temperature": 0.7,
+          "top_p": 0.9,
+          "top_k": 40,
+          "description": "Balanced model with Q6 quantization for quality and speed"
+        },
+        {
+          "name": "DeepSeek R1 Q4",
+          "id": "deepseek/deepseek-r1-distill-qwen-32b-q4",
+          "context_window": 64000,
+          "default_max_tokens": 8000,
+          "temperature": 0.8,
+          "top_p": 0.95,
+          "description": "Reasoning-focused model with extended context"
+        }
+      ]
+    }
+  },
+  "default_provider": "lmstudio-optimized",
+  "session": {
+    "default_context_window": 16384,
+    "max_history_messages": 50,
+    "auto_save": true,
+    "save_interval": 300
+  },
+  "ui": {
+    "theme": "dark",
+    "show_tokens": true,
+    "show_timing": true,
+    "streaming": true
+  },
+  "performance": {
+    "cache_responses": true,
+    "cache_ttl": 3600,
+    "parallel_requests": false,
+    "batch_size": 1
+  }
+}

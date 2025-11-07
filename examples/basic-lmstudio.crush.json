@@ -1,0 +1,19 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lmstudio": {
+      "name": "LM Studio Local",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "Qwen2.5 Coder 30B",
+          "id": "qwen/qwen2.5-coder-30b",
+          "context_window": 32768,
+          "default_max_tokens": 4096
+        }
+      ]
+    }
+  },
+  "default_provider": "lmstudio"
+}

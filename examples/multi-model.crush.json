@@ -1,0 +1,62 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lmstudio-large": {
+      "name": "LM Studio - Large Models",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "Qwen3 Coder 70B",
+          "id": "qwen/qwen3-coder-70b-q4",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "description": "Best for complex code analysis and refactoring"
+        },
+        {
+          "name": "DeepSeek R1",
+          "id": "deepseek/deepseek-r1-q4",
+          "context_window": 64000,
+          "default_max_tokens": 8000,
+          "description": "Best for planning and architecture design"
+        }
+      ]
+    },
+    "lmstudio-medium": {
+      "name": "LM Studio - Medium Models",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "Qwen2.5 Coder 30B",
+          "id": "qwen/qwen2.5-coder-30b-q6",
+          "context_window": 32768,
+          "default_max_tokens": 4096,
+          "description": "Balanced performance for daily coding"
+        },
+        {
+          "name": "DeepSeek Coder V3 20B",
+          "id": "deepseek/deepseek-coder-v3-20b-q6",
+          "context_window": 16384,
+          "default_max_tokens": 2048,
+          "description": "Fast inference for quick tasks"
+        }
+      ]
+    },
+    "lmstudio-small": {
+      "name": "LM Studio - Small Models",
+      "base_url": "http://localhost:1234/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "StarCoder2 15B",
+          "id": "bigcode/starcoder2-15b-q8",
+          "context_window": 16384,
+          "default_max_tokens": 2048,
+          "description": "Ultra-fast for real-time suggestions"
+        }
+      ]
+    }
+  },
+  "default_provider": "lmstudio-medium"
+}
